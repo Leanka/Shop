@@ -3,6 +3,11 @@ package frompythontojava.onlineshop.part1;
 
 public class Basket{
     private class ProductIterator implements Iterator{
-        ;
+        public boolean hasNext(){
+            ;
+        }
+        public Object next(){
+            ;
+        }
     }
 }
