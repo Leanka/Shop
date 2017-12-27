@@ -19,13 +19,4 @@ public class Basket{
     public boolean removeProduct(Product product){
         ;
     }
-
-    private class ProductIterator implements Iterator{
-        public boolean hasNext(){
-            ;
-        }
-        public Object next(){
-            ;
-        }
-    }
 }
