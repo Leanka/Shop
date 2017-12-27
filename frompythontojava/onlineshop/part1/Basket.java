@@ -1,12 +1,11 @@
 package frompythontojava.onlineshop.part1;
 
 import java.util.ArrayList;
-
-import frompythontojava.onlineshop.part1.Iterator;
+import frompythontojava.onlineshop.part1.ProductIterator;  //Potrzebne?
 
 public class Basket{
     private ArrayList <Product> productList;
-    private Iterator iterator; //? bez new? skoro nie ma konstruktora, to nie powinno byc tu?
+    private ProductIterator iterator; //? bez new? skoro nie ma konstruktora, to nie powinno byc tu?
 
     public Iterator getIterator(){
         return this.iterator; //new Iterator?
