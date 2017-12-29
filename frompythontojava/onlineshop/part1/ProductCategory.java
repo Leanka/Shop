@@ -10,6 +10,7 @@ public class ProductCategory{
     }
 
     public ProductCategory(String name){
-        ;
+        System.out.println(name + " from " + this.getClass().getSimpleName() + " class.");
+        
     }
 }
