@@ -18,14 +18,14 @@ public class Product{
     }
 
     public String toString(){
-        ;
+        return new String();
     }
 
     public ArrayList getAllProducts(){
-        ;
+        return new ArrayList();
     }
 
     public ArrayList getAllProductsBy(ProductCategory productCategory){
-        ;
+        return new ArrayList ();
     }
 }
