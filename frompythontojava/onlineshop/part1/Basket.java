@@ -21,13 +21,19 @@ public class Basket{
     private class ProductIterator implements Iterator{
         private int index = 0;
 
+        @Override
         public boolean hasNext(){
             if(index < productList.size()){
                 return true;
             }
             return false;
         }
+
+        @Override
         public Object next(){
+            if(this.hasNext()){
+                return productList.get(index++);
+            }
             return null;
         }
     }
