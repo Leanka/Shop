@@ -15,7 +15,11 @@ public class Basket{
     }
 
     public boolean removeProduct(Product product){
-        return false;
+        if(productList.remove(product)){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     private class ProductIterator implements Iterator{
