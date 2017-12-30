@@ -6,6 +6,16 @@ public class FeaturedProductCategory extends ProductCategory{
     private Date expirationDate;
 
     public FeaturedProductCategory(String name, Date expirationDate){
-        System.out.println(name + " " + expirationDate.toString()+ " from " + this.getClass().getSimpleName() + " class.");
+        super.setName(name);
+        this.expirationDate = expirationDate;
     }
+
+    public String toString(){
+        return this.getClass().getSimpleName() + ",";
+    }
+
+    public String getInfo(){
+        return super.getInfo() + "date" + this.expirationDate.toString() + ",";
+    }
+
 }
