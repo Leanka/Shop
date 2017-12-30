@@ -3,11 +3,10 @@ package frompythontojava.onlineshop.part1;
 import java.util.ArrayList;
 
 public class Basket{
-    private ArrayList <Product> productList;
-    private ProductIterator iterator = new ProductIterator();
+    private ArrayList <Product> productList = new ArrayList<Product>();
 
     public Iterator getIterator(){
-        return this.iterator;
+        return new ProductIterator();
     }
 
     public void addProduct(Product product){
@@ -39,6 +38,7 @@ public class Basket{
                 return productList.get(index++);
             }
             return null;
+            
         }
     }
 }
