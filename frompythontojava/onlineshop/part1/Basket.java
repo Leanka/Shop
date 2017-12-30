@@ -11,7 +11,7 @@ public class Basket{
     }
 
     public void addProduct(Product product){
-        ;
+        productList.add(product);
     }
 
     public boolean removeProduct(Product product){
