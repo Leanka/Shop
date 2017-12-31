@@ -24,6 +24,10 @@ public class Order implements Orderable{
 
     @Override
     public boolean pay(){
-        return true;        
+        if(this.status.equals("checked")){
+            this.status = "payed";
+            return true;
+        }
+        return false;        
     }
 }
