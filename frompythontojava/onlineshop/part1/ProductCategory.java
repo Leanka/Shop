@@ -3,17 +3,17 @@ package frompythontojava.onlineshop.part1;
 
 public class ProductCategory{
     private String name;
-    private Integer ID;
+    private final Integer ID;
     private static Integer idCounter = 0;
 
     public ProductCategory(){
         this.name = "UNKNOWN CATEGORY";
-        this.ID = idCounter++;
+        this.ID = ++idCounter;
     }
 
     public ProductCategory(String name){
         this.name = name;
-        this.ID = idCounter++;  
+        this.ID = ++idCounter;  
     }
 
     public String toString(){
@@ -21,7 +21,7 @@ public class ProductCategory{
     }
 
     public String getInfo(){
-        return ",category:" + this.name + ",";
+        return "category:" + this.name + ",";
     }
     public void setName(String name){
         this.name = name;
@@ -33,5 +33,9 @@ public class ProductCategory{
 
     public static Integer getIdCounter(){
         return idCounter;
+    }
+
+    public Integer getID(){
+        return this.ID;
     }
 }
