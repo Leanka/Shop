@@ -2,14 +2,16 @@ package frompythontojava.onlineshop.part2;
 
 public abstract class AbstractProcess implements Orderable{
     public void process(Orderable item){
-        ;
+        stepBefore();
+        action(item);
+        stepAfter();
     }
     public void stepBefore(){
         ;
     }
     abstract protected void action(Orderable item);
     
-    public void setpAfter(){
+    public void stepAfter(){
         ;
     }
 
