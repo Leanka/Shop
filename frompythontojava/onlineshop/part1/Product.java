@@ -6,12 +6,12 @@ public class Product{
     private String name;
     private Float defaultPrice;
     private ProductCategory productCategory;
-    private Integer ID;
+    private final Integer ID;
     private static Integer idCounter = 0;
     private static ArrayList <Product> productList = new ArrayList<Product>();
 
     public Product(){
-        this.ID = idCounter++;
+        this.ID = ++idCounter;
 
         productList.add(this);
     }
@@ -20,7 +20,7 @@ public class Product{
         this.name = name;
         this.defaultPrice = defaulPrice;
         this.productCategory = productCategory;
-        this.ID = idCounter++;
+        this.ID = ++idCounter;
 
         productList.add(this);
     }
