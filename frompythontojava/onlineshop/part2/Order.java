@@ -7,10 +7,18 @@ public class Order implements Orderable{
 
     public Order(){
         this.status = "new";
-        this.id = idCounter++;
+        this.id = ++idCounter;
     }
     public String getStatus(){
         return this.status;
+    }
+
+    public static int getIdCounter(){  //make it static for tests (so it could be reached from static context)
+        return idCounter;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     @Override
