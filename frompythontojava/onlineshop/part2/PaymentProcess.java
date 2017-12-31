@@ -5,9 +5,5 @@ public class PaymentProcess extends AbstractProcess{
         ;
     }
 
-    @Override
-    public boolean pay(){
-        return super.pay();
-    }
     
 }
