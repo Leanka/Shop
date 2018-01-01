@@ -20,6 +20,14 @@ public class Basket{
             return false;
         }
     }
+
+    public int getBasketQuantity(){
+        return this.productList.size();
+    }
+
+    public void clearBasket(){
+        productList.clear();
+    }
     
     private class ProductIterator implements Iterator{
         private int index = 0;
