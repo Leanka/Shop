@@ -12,7 +12,7 @@ public class FeaturedProductCategory extends ProductCategory{
 
     @Override
     public String getInfo(){
-        return super.getInfo() + "date" + this.expirationDate.toString() + ",";
+        return super.getInfo() + "date:" + this.expirationDate.toString() + ",";
     }
 
 }
