@@ -11,9 +11,10 @@ public class Product{
     private static ArrayList <Product> productList = new ArrayList<Product>();
 
     public Product(){
+        this.name = "NONE";
+        this.defaultPrice = 0.0f;
+        this.productCategory = new ProductCategory();
         this.ID = ++idCounter;
-
-        productList.add(this);
     }
 
     public Product(String name, Float defaulPrice, ProductCategory productCategory){
@@ -22,18 +23,14 @@ public class Product{
         this.productCategory = productCategory;
         this.ID = ++idCounter;
 
-        productList.add(this);
+        addProduct(this);
     }
 
     public String toString(){
-        if(this.name == null){
-            return "ID:" + this.ID + ",name:UNKNOWN PRODUCT";
-        }else{
-            return "ID:" + this.ID + 
-                    ",name:" +this.name + 
-                    ",price: " + this.defaultPrice + "," + 
-                    this.productCategory.getInfo();    
-        }
+        return "ID:" + this.ID + 
+                ",name:" +this.name + 
+                ",price: " + this.defaultPrice + "," + 
+                this.productCategory.getInfo();    
         
     }
 
@@ -54,6 +51,29 @@ public class Product{
 
     public static Integer getIdCounter(){
         return idCounter;
+    }
+
+    public boolean removeProduct(Product porductToRemove){
+        if(productList.remove(porductToRemove)){
+            return true;
+        }
+        return false;
+    }
+
+    public void addProduct(Product porductToAdd){
+        productList.add(porductToAdd);
+    }
+
+    public Integer getID(){
+        return this.ID;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Float getDefaultPrice(){
+        return this.defaultPrice;
     }
 
 }
