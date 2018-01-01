@@ -64,6 +64,7 @@ public class Staff{
                 this.view.holdTillKeyPressed();
             }else if(userChoice.equals("4")){
                 this.stock.showAllProductsInCategory();
+                this.view.holdTillKeyPressed();
             }else{
                 this.view.print("Incorrect choice.");
                 this.view.holdTillKeyPressed();
