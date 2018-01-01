@@ -9,7 +9,7 @@ import frompythontojava.onlineshop.part1.ExpirationDate;
 import java.util.Date;
 
 public class Stock{
-    private final Product PRODUCT = new Product();
+    private final Product PRODUCT = new Product();  // field is used to get acces to Product static field and as a flag (indicates incorrect choice)
     private View view = new View();
     private ArrayList <ProductCategory> productCategory = new ArrayList <ProductCategory>();
     private final int INCORRECT_INPUT = -1;
