@@ -9,11 +9,10 @@ public class View{
         String user_input;
         
         do{
-            print(message);
+            System.out.print(message);
             user_input = input.nextLine();
         }while(user_input.trim().length() == 0);
 
-        input.close();
         return user_input;
     }
 
@@ -21,13 +20,27 @@ public class View{
         System.out.println(message);
     }
 
-    public void printSepatator(){
+    public void print(){
         print("");
     }
 
-    public static void clear_screen(){
+    public void clearScreen(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public void showList(Object [] list){
+        for(Object item: list){
+            print(String.valueOf(item));
+        }
+    }
+
+    public void holdTillKeyPressed(){
+        Scanner input = new Scanner(System.in);
+        print();
+        System.out.print("Press any key to continue");
+        input.nextLine();        
+    }
+
 
 }
