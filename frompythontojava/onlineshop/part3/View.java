@@ -18,7 +18,7 @@ public class View{
     }
 
     public void print(Object message){
-        ;
+        System.out.println(message);
     }
 
 }
