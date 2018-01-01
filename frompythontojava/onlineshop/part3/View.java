@@ -21,4 +21,8 @@ public class View{
         System.out.println(message);
     }
 
+    public void printSepatator(){
+        print("");
+    }
+
 }
