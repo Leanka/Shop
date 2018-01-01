@@ -21,9 +21,9 @@ public class Shop{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.clearScreen();
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
@@ -32,8 +32,8 @@ public class Shop{
             }else if(userChoice.equals("2")){
                 this.client.startShopping();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }

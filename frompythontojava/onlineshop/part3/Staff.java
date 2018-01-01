@@ -18,9 +18,9 @@ public class Staff{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.clearScreen();
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
@@ -31,7 +31,7 @@ public class Staff{
             }else if(userChoice.equals("3")){
                 browseOptions();
             }else{
-                view.print("Incorrect choice.");
+                this.view.print("Incorrect choice.");
             }
         }while(toContinue);
     }
@@ -47,26 +47,26 @@ public class Staff{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.clearScreen();
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
             }else if(userChoice.equals("1")){
                 this.stock.createNewProduct();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("2")){
                 this.stock.removeProduct();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("3")){
                 this.stock.showAllProduct();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("4")){
                 this.stock.showAllProductsInCategory();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }
@@ -81,24 +81,24 @@ public class Staff{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.clearScreen();
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
             }else if(userChoice.equals("1")){
                 this.stock.addNewCategory();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("2")){
                 this.stock.addNewFeaturedCategory();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("3")){
                 this.stock.showAllCategories();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }
@@ -111,18 +111,18 @@ public class Staff{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.clearScreen();
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
             }else if(userChoice.equals("1")){
                 this.stock.checkProductAvailability();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }

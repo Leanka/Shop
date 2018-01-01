@@ -31,10 +31,10 @@ public class Client{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
+            this.view.clearScreen();
             showClientsInfo();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
@@ -43,7 +43,7 @@ public class Client{
             }else if(userChoice.equals("2")){
                 baskeOptions();
             }else{
-                view.print("Incorrect choice.");
+                this.view.print("Incorrect choice.");
             }
         }while(toContinue);
     }
@@ -58,25 +58,25 @@ public class Client{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
+            this.view.clearScreen();
             showClientsInfo();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
             }else if(userChoice.equals("1")){
                 this.stock.showAllProduct();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("2")){
                 this.stock.showAllProductsInCategory();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("3")){
                 this.stock.showAllCategories();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }
@@ -92,10 +92,10 @@ public class Client{
         
         boolean toContinue = true;
         do{
-            view.clearScreen();
+            this.view.clearScreen();
             showClientsInfo();
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+            this.view.showList(list);
+            String userChoice = this.view.getInput("Choose option: ");
 
             if(userChoice.equals("0")){
                 toContinue = false;
@@ -106,29 +106,29 @@ public class Client{
             }else if(userChoice.equals("3")){
                 checkoutBasket();
                 showMyBasket();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else if(userChoice.equals("4")){
                 pay();
-                view.holdTillKeyPressed();
+                this.view.holdTillKeyPressed();
             }else{
-                view.print("Incorrect choice.");
-                view.holdTillKeyPressed();
+                this.view.print("Incorrect choice.");
+                this.view.holdTillKeyPressed();
             }
         }while(toContinue);
     }
 
     private void pay(){
         if(this.basket.getBasketQuantity() == 0){
-            view.print("Nothing to pay for");
+            this.view.print("Nothing to pay for");
             return;
         }
 
         PaymentProcess paymentProcess = new PaymentProcess();
-        paymentProcess.process(order);
+        paymentProcess.process(this.order);
 
-        if(order.getStatus().equals("payed")){
-            view.print("Order number " + this.order.getId() + " has been payed.");
-            view.print("Your basket is empty!");
+        if(this.order.getStatus().equals("payed")){
+            this.view.print("Order number " + this.order.getId() + " has been payed.");
+            this.view.print("Your basket is empty!");
             this.basket.clearBasket();
             setNewOrder();
         }
@@ -136,31 +136,31 @@ public class Client{
 
     private void checkoutBasket(){
         if(this.basket.getBasketQuantity() == 0){
-            view.print("Nothing to check");
+            this.view.print("Nothing to check");
             return;
         }
         CheckoutProcess checkoutProcess = new CheckoutProcess();
-        checkoutProcess.process(order);
+        checkoutProcess.process(this.order);
     }
 
     private void showOrderStatus(){
-        view.print("Order (ID:" + this.order.getId() + ") status: " + this.order.getStatus());
+        this.view.print("Order (ID:" + this.order.getId() + ") status: " + this.order.getStatus());
     }
     private void showBasketStatus(){
-        view.print("Basket quantity: " + this.basket.getBasketQuantity());
+        this.view.print("Basket quantity: " + this.basket.getBasketQuantity());
     }
 
     private void showClientsInfo(){
         showBasketStatus();
         showOrderStatus();
-        view.print();
+        this.view.print();
     }
 
     private void addProductToBasket(){
         Product chosenProduct = this.stock.getProduct();
         if(chosenProduct == this.stock.getPRODUCT()){
-            view.print("Incorrect product choice. Operation terminated");
-            view.holdTillKeyPressed();
+            this.view.print("Incorrect product choice. Operation terminated");
+            this.view.holdTillKeyPressed();
         }else{
             this.basket.addProduct(chosenProduct);
             this.stock.removeProduct(chosenProduct);
@@ -170,16 +170,16 @@ public class Client{
 
     private void removeProductFromBasket(){
         if(this.basket.getBasketQuantity() == 0){
-            view.print("Basket is empty.");
-            view.holdTillKeyPressed();
+            this.view.print("Basket is empty.");
+            this.view.holdTillKeyPressed();
             return;
         }
 
         Product chosenProduct = getProductFromBasket();
 
         if(chosenProduct == this.stock.getPRODUCT()){
-            view.print("Incorrect product choice. Operation terminated");
-            view.holdTillKeyPressed();
+            this.view.print("Incorrect product choice. Operation terminated");
+            this.view.holdTillKeyPressed();
             return;
         }
 
@@ -193,8 +193,8 @@ public class Client{
         showMyBasket();
 
         Integer productId = this.stock.getNumberFromUser("Pass Product ID: ");
-        if(productId == INCORRECT_INPUT){
-            view.print("Incorrect product choice. Operation terminated");
+        if(productId == this.INCORRECT_INPUT){
+            this.view.print("Incorrect product choice. Operation terminated");
             return this.stock.getPRODUCT();
         }
 
