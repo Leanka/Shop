@@ -75,5 +75,4 @@ public class Product{
     public Float getDefaultPrice(){
         return this.defaultPrice;
     }
-
 }
