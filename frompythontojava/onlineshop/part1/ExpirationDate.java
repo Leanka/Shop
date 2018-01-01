@@ -10,12 +10,13 @@ public class ExpirationDate{
     private View view = new View();
     private final int INCORRECT_DATE = -1;  //returning negative value indicates incorrect data (replacement of boolean)
 
-    public int getMonthDay(){  //przekazywać miesiąc i rok żeby spr czy dzień mieści się w zasięgu danego mca
+    public int getMonthDay(){
+        int currentDay = LocalDate.now().getDayOfMonth();
         int day;
         try{
             do{
                 day = Integer.valueOf(view.getInput("Pass expiration date day (00): "));
-            }while(day < 1 || day > 31);    
+            }while(day < 1 || day > 31 || day < currentDay);    
         }catch(NumberFormatException errorMessage){
             view.print(errorMessage);
             view.print("Incorrect data");
@@ -25,17 +26,18 @@ public class ExpirationDate{
     }
 
     public int getMonth(){
+        int currentMonth = LocalDate.now().getMonthValue();
         int month;
         try{
             do{
                 month = Integer.valueOf(view.getInput("Pass expiration date month (00): "));
-            }while(month < 1 || month > 12);    
+            }while(month < 1 || month > 12 || month < currentMonth);    
         }catch(NumberFormatException errorMessage){
             view.print(errorMessage);
             view.print("Incorrect data");
             return INCORRECT_DATE;
         }
-        return month-1; //as months start at 0 not at 1
+        return month-1; //as Date class months start at 0 not at 1
     }
 
     public int getYear(){
