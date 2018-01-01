@@ -4,150 +4,210 @@ import java.util.ArrayList;
 
 import frompythontojava.onlineshop.part1.Product;
 import frompythontojava.onlineshop.part1.ProductCategory;
+import frompythontojava.onlineshop.part1.FeaturedProductCategory;
+import frompythontojava.onlineshop.part1.ExpirationDate;
+import java.util.Date;
 
 public class Stock{
-    private Product product = new Product();
+    private final Product PRODUCT = new Product();
     private ArrayList <ProductCategory> productCategory = new ArrayList <ProductCategory>();
     private View view = new View();
+    private final int INCORRECT_INPUT = -1;
+    private final ProductCategory CATEGORY = new ProductCategory();
 
-    //menu
-    public void productOptions(){
-        String [] list = {"Product options:",
-                        "  1.Add new product",
-                        "  2.Remove product",
-                        "  3.Show all products",
-                        "  0.Exit",
-                        ""};
+    public Stock(){
+        //Add some test Categories & products for testing purpose
+
+        ProductCategory fruits = new ProductCategory("Fruits");
+        ProductCategory vegetables = new ProductCategory("Vegetable");
         
-        boolean toContinue = true;
-        do{
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
+        productCategory.add(fruits);
+        productCategory.add(vegetables);
+        productCategory.add(new ProductCategory("Baked goods"));
 
-            if(userChoice.equals("0")){
-                toContinue = false;
-            }else if(userChoice.equals("1")){
-                createNewProduct();
-            }else if(userChoice.equals("2")){
-                removeProduct(); 
-            }else if(userChoice.equals("3")){
-                showAllProduct();
-            }else{
-                view.print("Incorrect choice.");
-            }
-        }while(toContinue);
+        new Product("Apple", 1.05f, fruits);
+        new Product("Mango", 13.50f, fruits);
+        new Product("Carrot", 2.35f, vegetables);
+        new Product("Garlic", 0.99f, vegetables);
+        new Product("Onion", 1.00f, vegetables);
+        
     }
 
-    public void categoryOptions(){
-        String [] list = {"Category options:",
-                        "  1.Add new category",
-                        "  2.Add new featured product category",
-                        "  3.Show all categories",
-                        "  0.Exit",
-                        ""};
-        
-        boolean toContinue = true;
-        do{
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
-
-            if(userChoice.equals("0")){
-                toContinue = false;
-            }else if(userChoice.equals("1")){
-                addNewCategory();
-            }else if(userChoice.equals("2")){
-                addNewFeaturedCategory();
-            }else if(userChoice.equals("3")){
-                showAllCategories();
-            }else{
-                view.print("Incorrect choice.");
-            }
-        }while(toContinue);
+    public Product getPRODUCT(){
+        return this.PRODUCT;
     }
-
-    public void browseOptions(){
-        String [] list = {"Browse options:",
-                        "  1.browse all products",
-                        "  2.browse products by category",
-                        "  3.Check product availability",
-                        "  0.Exit",
-                        ""};
-        
-        boolean toContinue = true;
-        do{
-            view.showList(list);
-            String userChoice = view.getInput("Choose option: ");
-
-            if(userChoice.equals("0")){
-                toContinue = false;
-            }else if(userChoice.equals("1")){
-                getProduct();
-            }else if(userChoice.equals("2")){
-                getProductByCategory();
-            }else if(userChoice.equals("3")){
-                checkProductAvailability();
-            }else{
-                view.print("Incorrect choice.");
-            }
-        }while(toContinue);
-    }
-    //
-    private void createNewProduct(){
-        ProductCategory productCategory = getCategory();
+    
+    public void createNewProduct(){
+        ProductCategory chosenCategory = getCategory();
+        if(chosenCategory == CATEGORY){
+            view.print("Adding product terminated.");
+            return;
+        }
         String name = view.getInput("Pass new products name: ");
+        
         float price;
         try{
             price = Float.valueOf(view.getInput("Pass new products price: "));
-        }catch(NumberFormatException error_message){
-            view.print(error_message);
+        }catch(NumberFormatException errorMessage){
+            view.print(errorMessage);
             view.print("Adding product terminated.");
             return;
         }
 
-        new Product(name, price, productCategory);
+        Integer itemCount = getNumberFromUser("How many products would you like to add? ");
+        while(itemCount > 0){
+            new Product(name, price, chosenCategory);
+            --itemCount;
+        }
 
     }
 
-    private void removeProduct(){
-        this.product.removeProduct(getProduct()); //zabezpieczyć przed złym wyborem/mozliwosc wycofania sie
+    public void removeProduct(){
+        Product chosenProduct = getProduct();
+        if(chosenProduct == PRODUCT){
+            view.print("Incorrect product choice. Operation terminated");
+        }else{
+            this.PRODUCT.removeProduct(chosenProduct);
+        } 
     }
 
-    private void showAllProduct(){
-        ArrayList <Product> productList = product.getAllProducts();
+    public void removeProduct(Product chosenProduct){
+            this.PRODUCT.removeProduct(chosenProduct);
+
+    }
+
+    public void showAllProduct(){
+        ArrayList <Product> productList = PRODUCT.getAllProducts();
         view.print("All products:");
         for(int index = 0; index < productList.size(); ++index){
             view.print(productList.get(index).toString());
         }
         view.print();
     }
-    //
-    private void addNewCategory(){
-        ; //choice feat or not
-    }
-
-    private void addNewFeaturedCategory(){
-        ; //choice feat or not
-    }
-
-    private void showAllCategories(){
-        ;
-    }
-    //
-    private Product getProduct(){
-        return new Product();
-    }
-
-    private ProductCategory getCategory(){
-        return new ProductCategory();
-    }
-
-    private Product getProductByCategory(){
-        return new Product();
-    }
-
-    private void checkProductAvailability(){
-        ;
-    }
-
     
+    public void addNewCategory(){
+        String categoryName = view.getInput("Pass category name: ");
+        productCategory.add(new ProductCategory(categoryName));
+    }
+
+    public void addNewFeaturedCategory(){
+        String categoryName = view.getInput("Pass category name: ");
+
+        ExpirationDate getDate = new ExpirationDate();
+        Date expirationDate = getDate.getEspiriationDate();
+        productCategory.add(new FeaturedProductCategory(categoryName, expirationDate));
+    }
+
+    public void showAllCategories(){
+        view.print("All categories:");
+        for(int index = 0; index < productCategory.size(); ++index){
+            view.print("ID: " + productCategory.get(index).getID() + 
+                        ". " + productCategory.get(index).getInfo());
+        }
+        view.print();
+    }
+
+    public Integer getNumberFromUser(String message){
+        Integer itemId = INCORRECT_INPUT;
+        try{
+            itemId = Integer.valueOf(view.getInput(message));
+        }catch(NumberFormatException errorMessage){
+            view.print(errorMessage);
+            view.print("Getting input terminated.");
+        }
+        return itemId;
+    }
+
+    public Product getProduct(){
+        showAllProduct();
+        Integer productId = getNumberFromUser("Pass Products ID: ");
+        if(productId == INCORRECT_INPUT){
+            return PRODUCT;
+        }
+
+        ArrayList <Product> productsList = this.PRODUCT.getAllProducts();
+        for(int index = 0; index < productsList.size(); ++index){
+            if(productId.equals(productsList.get(index).getID())){
+                return productsList.get(index);
+            }
+        }
+        return PRODUCT;
+    }
+
+    public ProductCategory getCategory(){
+        showAllCategories();
+        Integer categoryId = getNumberFromUser("Pass category ID: ");
+        if(categoryId == INCORRECT_INPUT){
+            return CATEGORY;
+        }
+
+        for(int index = 0; index < productCategory.size(); ++index){
+            if(categoryId.equals(productCategory.get(index).getID())){
+                return productCategory.get(index);
+            }
+        }
+        return CATEGORY;
+    }
+    public void showAllProductsInCategory(){
+        ProductCategory chosenCategory = getCategory();
+        if(chosenCategory == CATEGORY){
+            view.print("Adding product terminated.");
+            return;
+        }
+
+        ArrayList <Product> allProductsByChosenCategory = PRODUCT.getAllProductsBy(chosenCategory);
+        if(allProductsByChosenCategory.size() == 0){
+            view.print("No products in " + chosenCategory.getName() + " category");
+            return;
+        }
+
+        for(int index = 0; index < allProductsByChosenCategory.size(); ++index){
+            view.print(chosenCategory.toString() + allProductsByChosenCategory.get(index).toString());
+        } 
+    }
+
+    public Product getProductByCategory(){
+        ProductCategory chosenCategory = getCategory();
+        if(chosenCategory == CATEGORY){
+            return PRODUCT;
+        }
+
+        ArrayList <Product> allProductsByChosenCategory = PRODUCT.getAllProductsBy(chosenCategory);
+        if(allProductsByChosenCategory.size() == 0){
+            view.print("No products in " + chosenCategory.getName() + " category");
+            return PRODUCT;
+        }
+        
+        for(int index = 0; index < allProductsByChosenCategory.size(); ++index){
+            view.print(chosenCategory.toString() + allProductsByChosenCategory.get(index).toString());
+        }
+        
+        Integer productId = getNumberFromUser("Pass Product ID: ");
+        if(productId == INCORRECT_INPUT){
+            return PRODUCT;
+        }
+        for(int index = 0; index < allProductsByChosenCategory.size(); ++index){
+            if(productId.equals(allProductsByChosenCategory.get(index).getID())){
+                return allProductsByChosenCategory.get(index);
+            }
+        }
+        return PRODUCT;
+    }
+
+    public void checkProductAvailability(){
+        String productName = view.getInput("Pass wanted products name: ");
+
+        ArrayList <Product> productsList = this.PRODUCT.getAllProducts();
+        int itemCounter = 0;
+        for(int index = 0; index < productsList.size(); ++index){
+            if(productName.equals(productsList.get(index).getName())){
+                ++itemCounter;
+            }
+        }
+        if(itemCounter == 0){
+            view.print("No such product in the stock");
+        }else{
+            view.print("There are " + itemCounter + " " + productName + " in the stock.");
+        }
+    }  
 }
