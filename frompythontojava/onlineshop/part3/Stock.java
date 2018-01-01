@@ -200,7 +200,7 @@ public class Stock{
         ArrayList <Product> productsList = this.PRODUCT.getAllProducts();
         int itemCounter = 0;
         for(int index = 0; index < productsList.size(); ++index){
-            if(productName.equals(productsList.get(index).getName())){
+            if(productName.equalsIgnoreCase(productsList.get(index).getName())){
                 ++itemCounter;
             }
         }
