@@ -8,7 +8,7 @@ public class CheckoutProcess extends AbstractProcess{
         }else if(((Order)item).getStatus().equals("checked")){
             System.out.println("Invalid operation: Order was already checked.");
         }else if(((Order)item).getStatus().equals("payed")){
-            System.out.println("Invalid operation: Order was already checked and payed.");
+            System.out.println("Order was already checked and payed.");
         }
     }
     

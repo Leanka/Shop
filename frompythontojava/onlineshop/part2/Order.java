@@ -38,4 +38,8 @@ public class Order implements Orderable{
         }
         return false;        
     }
+
+    public void resetStatus(){
+        this.status = "new";
+    }
 }

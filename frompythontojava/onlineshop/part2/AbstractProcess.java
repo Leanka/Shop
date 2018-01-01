@@ -7,11 +7,11 @@ public abstract class AbstractProcess{
         stepAfter();
     }
     public void stepBefore(){
-        System.out.println("stepBefore placeholder");
+        System.out.println("Processing...");
     }
     abstract protected void action(Orderable item);
     
     public void stepAfter(){
-        System.out.println("stepAfter placeholder");
+        System.out.println("Processing finished.");
     }
 }
